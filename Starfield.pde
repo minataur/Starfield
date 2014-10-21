@@ -8,6 +8,7 @@ void setup() {
 		suzy[i] = new NormalParticle();
 	}
 	suzy[0] = new OddballParticle();
+	suzy[1] = new JumboParticle();
 
 	
 }
@@ -22,11 +23,12 @@ void draw() {
 }
 class NormalParticle implements Particle{
 	double myX, myY, speed, angle;
-	int bleep;
+	int bleep, mySize;
 
 	NormalParticle() {
 		myX = 300;
 		myY = 300;
+		mySize = 6;
 		bleep = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255),75);
 		speed = Math.random()*5;
 		angle = Math.random()*7;
@@ -35,7 +37,7 @@ class NormalParticle implements Particle{
 	public void show() {
 		noStroke();
 		fill(bleep);
-		ellipse((int)myX, (int)myY, 6, 6);
+		ellipse((int)myX, (int)myY, mySize, mySize);
 	}
 
 	public void move() {
@@ -51,7 +53,7 @@ interface Particle {
 	public void move();
 }
 
-class OddballParticle implements Particle{
+class OddballParticle implements Particle {
 	double myX, myY, speed, angle;
 	int bleep;
 	
@@ -60,7 +62,7 @@ class OddballParticle implements Particle{
 		myY = 300;
 		speed = 4;
 		angle = (Math.random()*3);
-		bleep = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255), 25);
+		bleep = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255), 80);
 	}
 
 	public void show() {
@@ -83,6 +85,13 @@ class OddballParticle implements Particle{
 		} else if (myY<0) {
 			angle = (Math.random()*3)+2;
 		}
+	}
+}
+
+class JumboParticle extends NormalParticle {
+
+	JumboParticle() {
+		mySize = 60;	
 	}
 }
 
